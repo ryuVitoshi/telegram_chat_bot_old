@@ -1,4 +1,4 @@
-#HELP
+# HELP
 desc = "This bot was created for online consultation of customers of our car maintance service.\nWith its help, you can view services, as well as make an appointment."
 coms = '''
 Bot commands:
@@ -14,10 +14,10 @@ There you can find our services, information about us, your profile and a "Home"
 '''
 HOW_HELP='How can we help you?\nPlease, chose an option bellow 👇'
 HELP_TEXT= f'Welcome!\n{desc}\n{coms}\n{HOW_HELP}'
-KEYBOARD = "Our services, contacts and your profile"
 
-#WELCOME
-WELCOME_TEXT='''🚙 Welcome to <b>Super Barbershop!</b> 🚙
+# WELCOME
+WELCOME_TEXT='''
+Welcome to <b>Super Barbershop!</b>
 '''
 
 # Company info
@@ -29,17 +29,11 @@ location = "69000 Zaporizhzhia, Zaporizka street"
 owner = "Dimitriy Slaveykov"
 COMPANY_INFO = f'{name}\n{desc}\n📍{location}\n✉️ {email}\n📞 {phone} \t{owner}'
 
-
-# Ask
-ASK = '''❓Got questions or suggestions? <b>Share with us</b>!
-
-🗣️Our managers will provide answers at <b>the first opportunity</b>!
-🗓️ Business hours are <b>Monday-Friday</b> from <b>9:00 a.m.</b> to <b>6:00 p.m</b>
-
-\nThank you for understanding ✅
+# SERVICES
+SERVICES = '''Choose service below'''
+MASTER_CUT = '''
+Begins with a shampoo done with revitalizing hair wash proceeds to your
+cut and style of choice.Finishes with eyebrows shaping and straight
+razor neck shave and hot towel with eucalyptus freeze splash.
+Punctuality and satisfaction 100% guaranteed or you pay nothing.
 '''
-
-#DIAGNOSTIC
-DIAGNOSTICS = '''📊 <b>Diagnostics</b> 📊 
-
-Our service carries out two types of car diagnostics. You can learn more about each of them and sign up below 👇'''

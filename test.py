@@ -14,7 +14,7 @@ bot = credentials.bot
 services_dict = models.services_dict
 
 # Services message
-@bot.message_handler(func=lambda message: message.text == "💇 Services")
+@bot.message_handler(func=lambda message: message.text == '💇 Services')
 def send_welcome(message):
     uid = message.from_user.id
     bot.send_message(uid, texts.SERVICES, parse_mode='html', reply_markup = keyboard_services())
@@ -33,7 +33,7 @@ def keyboard_services():
     btn8 = types.KeyboardButton("Braids")
     btn_back = types.KeyboardButton("⬅️ Back")
     btn_home = types.KeyboardButton("⬆️ Home")
-    menu_keyboard.add(btn1,btn2).add(btn3,btn4).add(btn5,btn6).add(btn7,btn8).add(btn_back,btn_home)
+    menu_keyboard.add(btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8).add(btn_back,btn_home)
     return menu_keyboard
 
 @bot.message_handler (func=lambda message: message.text in services_buttons)

@@ -5,8 +5,11 @@ from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import credentials
 import texts
 import design
+import services
+import models
 
 bot = credentials.bot
+state = models.state
 
 bot.set_my_commands([
     telebot.types.BotCommand("/start", "Welcome message"),
@@ -24,7 +27,7 @@ bot.set_my_commands([
 @bot.message_handler(func=lambda message: message.text == '⬆️ Home')
 def send_welcome(message):
     uid = message.from_user.id
-    print(credentials.test)
+    state[uid] = 'home'
     photo = open('images/welcome.jpg', 'rb')
     #bot.send_message(uid, photo, texts.WELCOME_TEXT, parse_mode='html', reply_markup = design.keyboard())
     bot.send_message(uid, texts.WELCOME_TEXT, parse_mode='html', reply_markup = design.keyboard())
@@ -33,18 +36,20 @@ def send_welcome(message):
 @bot.message_handler(["help"])
 def send_help(message):
     uid = message.from_user.id
+    state[uid] = 'help'
     print(uid)
     pass
 
 # About us message
 @bot.message_handler(["aboutus"])
-def company_info(message):
-    button_list = [
-        InlineKeyboardButton("🌐 Our website", url='https://facebook.com')
-    ]
-    reply_markup = InlineKeyboardMarkup(design.build_menu(button_list, n_cols=1))    
-    bot.send_message(message.from_user.id,texts.COMPANY_INFO,parse_mode='html',reply_markup=reply_markup)
+@bot.message_handler(func=lambda message: message.text == "🌎 About us")
+def send_info(message):
+    uid = message.from_user.id
+    button_list = [InlineKeyboardButton("🌐 Our website", url='https://facebook.com')]
+    reply_markup = InlineKeyboardMarkup(design.build_menu(button_list, n_cols=1))
+    bot.send_message(uid,texts.COMPANY_INFO,parse_mode='html',reply_markup=reply_markup)
 
+# Inline Kayboard Button handler
 @bot.callback_query_handler(func=lambda message:True)
 def button_press_handler(call):
     data = call.data
@@ -61,7 +66,5 @@ def button_press_handler(call):
         pass
 
 bot.enable_save_next_step_handlers(delay=2)
-
 bot.load_next_step_handlers()
-
 bot.polling()

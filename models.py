@@ -7,16 +7,23 @@ class User:
 class Service:
     def __init__(self, name):
         self.name = name
+        self.info = None
         self.price = None
+
+class Employee:
+    def __init__(self, name):
+        self.name = name
+        self.role = None
+        self.phone = None
 
 class Schedule:
     def __init__(self, name):
-        self.worker_name = name
+        self.name = name
         self.date = None
-        #
-        #self.price = None
+        self.start_time = None
+        self.shift_time = None
 
-class Apointment:
+class Appointment:
     def __init__(self, user):
         self.user = user
         self.service = None
@@ -27,5 +34,8 @@ class Apointment:
         self.app_id = None
 
 user_dict = {}
+employee_dict = {}
+schedule_dict = {}
 services_dict = {}
 apps_dict = {}
+state = []

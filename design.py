@@ -34,7 +34,7 @@ def keyboard():
     btn2 = types.KeyboardButton("🌎 About us")
     btn3 = types.KeyboardButton("✍ Sign up")
     btn4 = types.KeyboardButton("📝 My Appointments")
-    btn5 = types.KeyboardButton("⬅️ Back")
-    btn6 = types.KeyboardButton("⬆️ Home")
-    menu_keyboard.add(btn1,btn2,btn3).add(btn4).add(btn5,btn6)
+    btn_back = types.KeyboardButton("⬅️ Back")
+    btn_home = types.KeyboardButton("⬆️ Home")
+    menu_keyboard.add(btn1,btn2,btn3).add(btn4).add(btn_back,btn_home)
     return menu_keyboard
