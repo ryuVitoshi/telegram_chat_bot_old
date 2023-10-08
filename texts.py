@@ -17,31 +17,17 @@ HELP_TEXT= f'Welcome!\n{desc}\n{coms}\n{HOW_HELP}'
 KEYBOARD = "Our services, contacts and your profile"
 
 #WELCOME
-WELCOME_TEXT='''🚙 Welcome to <b>Super Car Service!</b> 🚙
-
-✅ Our qualified team will help you <b>solve problems</b> with your car and provide <b>services such as:</b>
-
-   - Diagnostics (undercarriage and computer diagnostics); 📊
-   -	Car repair; 🛠️
-   -	Ordering auto parts; 🔩
-   -	Refueling the air conditioner; 🌀
-   -	Car painting and tuning; 🎨
-   -	Car polishing. ✨
-
-
-You can learn more about our services in the <b>«Services and products»</b> section below 👇
-
-🤷‍♀️ If you need help with bot, type "/help" or contact the manager "/question".
+WELCOME_TEXT='''🚙 Welcome to <b>Super Barbershop!</b> 🚙
 '''
 
 # Company info
-name = "<b>Super Car Service</b>"
+name = "<b>Super Barbershop</b>"
 desc = ""
-phone = "+3590888888"
-email ="supercarservice@hmail.com"
-location = "9000 Varna Center, Varna 43.209337, 27.911042"
-ppl ="Dimitriy Slaveykov"
-COMPANY_INFO = f'{name}\n{desc}\n📍{location}\n✉️ {email}\n📞 {phone} \t{ppl}'
+phone = "+38(012)-345-5678"
+email = "superbarbershop@hmail.com"
+location = "69000 Zaporizhzhia, Zaporizka street"
+owner = "Dimitriy Slaveykov"
+COMPANY_INFO = f'{name}\n{desc}\n📍{location}\n✉️ {email}\n📞 {phone} \t{owner}'
 
 
 # Ask
