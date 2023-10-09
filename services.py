@@ -10,16 +10,17 @@ import texts
 import models
 
 bot = credentials.bot
-
+state = models.state
 services_dict = models.services_dict
+
+services_buttons = ["Master cut","Master long hair","Master beard trim","Master shave","Master head shave","Buzz cut","Kids cut","Braids"]
 
 # Services message
 @bot.message_handler(func=lambda message: message.text == "💇 Services")
 def send_welcome(message):
     uid = message.from_user.id
+    state[uid] = 'services'
     bot.send_message(uid, texts.SERVICES, parse_mode='html', reply_markup = keyboard_services())
-
-services_buttons = ["Master cut","Master long hair","Master beard trim","Master shave","Master head shave","Buzz cut","Kids cut","Braids"]
 
 def keyboard_services():
     menu_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)

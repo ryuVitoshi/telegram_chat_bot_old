@@ -38,4 +38,4 @@ employee_dict = {}
 schedule_dict = {}
 services_dict = {}
 apps_dict = {}
-state = []
+state = {}

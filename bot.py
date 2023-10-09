@@ -29,8 +29,7 @@ def send_welcome(message):
     uid = message.from_user.id
     state[uid] = 'home'
     photo = open('images/welcome.jpg', 'rb')
-    #bot.send_message(uid, photo, texts.WELCOME_TEXT, parse_mode='html', reply_markup = design.keyboard())
-    bot.send_message(uid, texts.WELCOME_TEXT, parse_mode='html', reply_markup = design.keyboard())
+    bot.send_photo(uid, photo, caption=texts.WELCOME_TEXT, parse_mode='html', reply_markup = design.keyboard())
 
 # HELP message
 @bot.message_handler(["help"])
@@ -45,6 +44,7 @@ def send_help(message):
 @bot.message_handler(func=lambda message: message.text == "🌎 About us")
 def send_info(message):
     uid = message.from_user.id
+    state[uid] = 'aboutus'
     button_list = [InlineKeyboardButton("🌐 Our website", url='https://facebook.com')]
     reply_markup = InlineKeyboardMarkup(design.build_menu(button_list, n_cols=1))
     bot.send_message(uid,texts.COMPANY_INFO,parse_mode='html',reply_markup=reply_markup)
@@ -64,6 +64,25 @@ def button_press_handler(call):
     elif data == '':
 
         pass
+
+@bot.message_handler(func=lambda message: message.text == '⬅️ Back')
+def go_back(message):
+    uid = message.from_user.id
+    print(state[uid])
+    match state[uid]:
+        case 'home':
+            send_welcome(message)
+        case 'aboutus':
+            send_welcome(message)
+            pass
+        case 'help':
+            send_welcome(message)
+            pass
+        case 'services':
+            send_welcome(message)
+        case 'signup':
+            send_welcome(message)
+
 
 bot.enable_save_next_step_handlers(delay=2)
 bot.load_next_step_handlers()
