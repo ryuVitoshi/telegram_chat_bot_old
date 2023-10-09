@@ -83,6 +83,10 @@ def go_back(message):
             services.send_services(message)
         case 'signup':
             send_welcome(message)
+        case 'myappointments':
+            send_welcome(message)
+        case 'signupservice':
+            appointments.send_sign_up(message)
 
 
 bot.enable_save_next_step_handlers(delay=2)

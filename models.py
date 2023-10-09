@@ -38,6 +38,6 @@ class Appointment:
 user_dict = {}
 employee_dict = {}
 schedule_dict = {}
-services = []
+services_list = []
 apps_dict = {}
 state = {}
