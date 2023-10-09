@@ -31,9 +31,6 @@ COMPANY_INFO = f'{name}\n{desc}\n📍{location}\n✉️ {email}\n📞 {phone} \t
 
 # SERVICES
 SERVICES = '''Choose service below'''
-MASTER_CUT = '''
-Begins with a shampoo done with revitalizing hair wash proceeds to your
-cut and style of choice.Finishes with eyebrows shaping and straight
-razor neck shave and hot towel with eucalyptus freeze splash.
-Punctuality and satisfaction 100% guaranteed or you pay nothing.
-'''
+
+# SIGN UP
+SIGN_UP = '''Choose service below'''

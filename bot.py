@@ -7,6 +7,7 @@ import texts
 import design
 import services
 import models
+import appointments
 
 bot = credentials.bot
 state = models.state
