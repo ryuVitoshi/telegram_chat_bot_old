@@ -68,18 +68,18 @@ def button_press_handler(call):
 @bot.message_handler(func=lambda message: message.text == '⬅️ Back')
 def go_back(message):
     uid = message.from_user.id
-    print(state[uid])
+    #print(state[uid])
     match state[uid]:
         case 'home':
             send_welcome(message)
         case 'aboutus':
             send_welcome(message)
-            pass
         case 'help':
             send_welcome(message)
-            pass
         case 'services':
             send_welcome(message)
+        case 'service':
+            services.send_services(message)
         case 'signup':
             send_welcome(message)
 

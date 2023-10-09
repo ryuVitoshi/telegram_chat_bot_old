@@ -1,3 +1,5 @@
+import sqlite3
+import credentials
 
 class User:
     def __init__(self, name):
@@ -36,6 +38,6 @@ class Appointment:
 user_dict = {}
 employee_dict = {}
 schedule_dict = {}
-services_dict = {}
+services = []
 apps_dict = {}
 state = {}

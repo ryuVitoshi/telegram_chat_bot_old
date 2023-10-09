@@ -11,41 +11,73 @@ import models
 
 bot = credentials.bot
 state = models.state
-services_dict = models.services_dict
+services = models.services
+services_buttons = []
 
-services_buttons = ["Master cut","Master long hair","Master beard trim","Master shave","Master head shave","Buzz cut","Kids cut","Braids"]
+# Fill services
+def update_services():
+    con = sqlite3.connect(credentials.database)
+    c = con.cursor()
+    
+    c.execute('SELECT * FROM services')
+    data = c.fetchall()
+
+    list = []
+    global services_buttons
+    if data != None:
+        for element in data:
+            info = {
+            'name': element[1],
+            'info': element[2],
+            'price': element[3],
+            'time': element[4]
+            }
+            list.append(info)
+            services_buttons.append(info['name'])
+        global services
+        services = list
+
+update_services()
+#print(services)
+#print(services_buttons)
 
 # Services message
 @bot.message_handler(func=lambda message: message.text == "💇 Services")
-def send_welcome(message):
+def send_services(message):
     uid = message.from_user.id
     state[uid] = 'services'
     bot.send_message(uid, texts.SERVICES, parse_mode='html', reply_markup = keyboard_services())
 
-def keyboard_services():
+def keyboard_services(n_cols=2):
     menu_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    btn1 = types.KeyboardButton("Master cut")
-    btn2 = types.KeyboardButton("Master long hair")
-    btn3 = types.KeyboardButton("Master beard trim")
-    btn4 = types.KeyboardButton("Master shave")
-    btn5 = types.KeyboardButton("Master head shave")
-    btn6 = types.KeyboardButton("Buzz cut")
-    btn7 = types.KeyboardButton("Kids cut")
-    btn8 = types.KeyboardButton("Braids")
+    btn = tuple[types.KeyboardButton('test')]
+    for srvc in services:
+        btn += types.KeyboardButton(srvc['name'])
+        if services.index(srvc) % n_cols == n_cols-1:
+            menu_keyboard.add(btn)
+            btn = tuple[types.KeyboardButton('test')]
     btn_back = types.KeyboardButton("⬅️ Back")
     btn_home = types.KeyboardButton("⬆️ Home")
-    menu_keyboard.add(btn1,btn2).add(btn3,btn4).add(btn5,btn6).add(btn7,btn8).add(btn_back,btn_home)
+    menu_keyboard.add(btn_back,btn_home)
+    return menu_keyboard
+
+def keyboard_service(srvc):
+    menu_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    btn1 = types.KeyboardButton("✍ Sign up for "+srvc)
+    btn_back = types.KeyboardButton("⬅️ Back")
+    btn_home = types.KeyboardButton("⬆️ Home")
+    menu_keyboard.add(btn1).add(btn_back,btn_home)
     return menu_keyboard
 
 @bot.message_handler (func=lambda message: message.text in services_buttons)
-def send_services_info (message):
+def send_services_info(message):
     uid = message.from_user.id
     text = message.text
-    for srvc in services_dict:
-        if srvc['service_name'] == text:
-            #apps_dict[]
-            bot.send_message(uid, srvc['service_info'], parse_mode='html', reply_markup = design.keyboard())
+    state[uid] = 'service'
+    for srvc in services:
+        if srvc['name'] == text:
+            bot.send_message(uid, srvc['info'], parse_mode='html', reply_markup = keyboard_service(text))
             break
 
     
-    bot.send_message(uid, texts.SERVICES, parse_mode='html', reply_markup = design.keyboard())
+    #bot.send_message(uid, texts.SERVICES, parse_mode='html', reply_markup = design.keyboard())
